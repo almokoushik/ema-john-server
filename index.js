@@ -5,7 +5,7 @@ require('dotenv').config()
 const MongoClient = require('mongodb').MongoClient;
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.kar2i.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useUnifiedTopology: true }, { useNewUrlParser: true }, { connectTimeoutMS: 30000 }, { keepAlive: 1 });
-
+const port =5000;
 
 const app = express()
 app.use(express.json())
@@ -56,4 +56,4 @@ app.get("/",(req,res)=>{
 
 
 
-app.listen(5000,()=>console.log("Listening To Port 5000..."))
+app.listen(process.env.PORT||port)
